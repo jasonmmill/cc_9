@@ -30,6 +30,9 @@ class Manager extends Employee {
     calculateBonus() {
         return (this.salary * 12) * 0.1
     }
+    calculateAnnualSalary() {
+        return (this.salary * 12) + this.calculateBonus()
+    }
 }
 
 const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5)
@@ -48,9 +51,20 @@ class Company {
     listEmployees() {
         this.employees.forEach(employee => console.log(employee.getDetails()))
     }
+    calculateTotalPayroll() {
+        return this.employees.reduce((total, employee) => total + employee.calculateAnnualSalary(), 0)
+    }
+    promoteToManager(employee, teamSize) {
+        const index = this.employees.indexOf(employee)
+        this.employees[index] = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize)
+    }
+
 }
 
 const company = new Company("TechCorp")
 company.addEmployee(emp1)
 company.addEmployee(mgr1)
+company.listEmployees()
+console.log(company.calculateTotalPayroll())
+company.promoteToManager(emp1, 3)
 company.listEmployees()
