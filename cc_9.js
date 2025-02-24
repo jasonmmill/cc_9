@@ -51,14 +51,20 @@ class Company {
     listEmployees() {
         this.employees.forEach(employee => console.log(employee.getDetails()))
     }
+// Task 4 -  Implementing a Payroll System
     calculateTotalPayroll() {
         return this.employees.reduce((total, employee) => total + employee.calculateAnnualSalary(), 0)
     }
+// Task 5 - Implementing Promotions
     promoteToManager(employee, teamSize) {
         const index = this.employees.indexOf(employee)
+        if (index > -1) {
         this.employees[index] = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize)
+        }
+        else {
+            console.log(`Employee not found.`)
+        }
     }
-
 }
 
 const company = new Company("TechCorp")
