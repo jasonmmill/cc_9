@@ -25,7 +25,7 @@ class Manager extends Employee {
         this.teamSize = teamSize
     }
     getDetails() {
-        return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}, Team Size: ${this.teamSize}`
+        return `Manager: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}, Team Size: ${this.teamSize}`
     }
     calculateBonus() {
         return (this.salary * 12) * 0.1
@@ -35,3 +35,22 @@ class Manager extends Employee {
 const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5)
 console.log(mgr1.getDetails())
 console.log(mgr1.calculateBonus())
+
+// Task 3 - Creating a Company Class
+class Company {
+    constructor(name) {
+    this.name = name 
+    this.employees = []
+    }
+    addEmployee(employee) {
+        this.employees.push(employee)
+    }
+    listEmployees() {
+        this.employees.forEach(employee => console.log(employee.getDetails()))
+    }
+}
+
+const company = new Company("TechCorp")
+company.addEmployee(emp1)
+company.addEmployee(mgr1)
+company.listEmployees()
